@@ -12,8 +12,8 @@ class Solution {
             return;
         }
         rec(nums, index+1);
-        int x = op.size();
-        for(int i=0;i<x;i++){
+        int len = op.size();
+        for(int i=0;i<len;i++){
              List<Integer> ans = new ArrayList<>(op.get(i));
                ans.add(nums[index]);
                op.add(ans);
