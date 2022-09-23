@@ -1,21 +1,22 @@
 class Solution {
-    List<List<Integer>> output = new ArrayList<>();
+    List<List<Integer>> op = new ArrayList<>();
     public List<List<Integer>> subsets(int[] nums) {
-        subsetsHelp(nums,0);
-        return output;
+        rec(nums,0);
+        return op;
     }
     
-    public void subsetsHelp(int[] nums,int index){
+    public void rec(int[] nums, int index) {
         if(index==nums.length){
-            output.add(new ArrayList<Integer>());
+            List<Integer> bc = new ArrayList<>();
+            op.add(bc);
             return;
         }
-        subsetsHelp(nums,index+1);
-        int len = output.size();
-        for(int i=0;i<len;i++){
-            List<Integer> ans = new ArrayList<>(output.get(i));
-            ans.add(nums[index]);
-            output.add(new ArrayList<>(ans));
+        rec(nums, index+1);
+        int x = op.size();
+        for(int i=0;i<x;i++){
+             List<Integer> ans = new ArrayList<>(op.get(i));
+               ans.add(nums[index]);
+               op.add(ans);
         }
         return;
     }
