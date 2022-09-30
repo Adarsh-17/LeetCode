@@ -1,23 +1,21 @@
 class Solution {
-    List<List<Integer>> op = new ArrayList<>();
+    List<List<Integer>> output = new ArrayList<>();
     public List<List<Integer>> subsets(int[] nums) {
-        rec(nums,0);
-        return op;
+        List<Integer> list = new ArrayList<>();
+        solve(nums, list, 0);
+        return output;
     }
     
-    public void rec(int[] nums, int index) {
-        if(index==nums.length){
-            List<Integer> bc = new ArrayList<>();
-            op.add(bc);
+    public void solve(int[] nums, List<Integer> list, int index){
+        if(index == nums.length){
+            output.add(new ArrayList(list));
             return;
         }
-        rec(nums, index+1);
-        int len = op.size();
-        for(int i=0;i<len;i++){
-             List<Integer> ans = new ArrayList<>(op.get(i));
-               ans.add(nums[index]);
-               op.add(ans);
-        }
-        return;
+        
+        solve(nums, new ArrayList(list), index+1);
+        list.add(nums[index]);
+        solve(nums, new ArrayList(list), index+1);
     }
+    
+    
 }
