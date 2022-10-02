@@ -26,7 +26,6 @@ class Solution {
         
         for(int i=0;i<board.length;i++){
             if(board[row][i]==0){
-                System.out.println(row+"->"+i);
                 board[row][i] = 1;
                 filldown(board,row,i);
                 fillrightdiag(board,row,i);
@@ -43,14 +42,12 @@ class Solution {
     public void filldown(int[][] board,int row,int col){
         for(int i=row+1;i<board.length;i++){
             board[i][col] += -1;
-            System.out.println(i+"dw->"+col);
         }
     }
     
      public void emptydown(int[][] board,int row,int col){
         for(int i=row+1;i<board.length;i++){
             board[i][col] += 1;
-            System.out.println(i+"edw->"+col);
         }
     }
     
@@ -58,7 +55,6 @@ class Solution {
         int i = row+1;
         int j = col-1;
         while(j>=0 && i<board.length){
-            System.out.println(i+"ld->"+j);
             board[i][j] += -1;
             i++;
             j--;
@@ -69,7 +65,6 @@ class Solution {
         int i = row+1;
         int j = col-1;
         while(j>=0 && i<board.length){
-            System.out.println(i+"eld->"+j);
             board[i][j] += 1;
             i++;
             j--;
@@ -80,7 +75,6 @@ class Solution {
          int i = row+1;
          int j = col+1;
         while(j<board.length && i<board.length){
-            System.out.println(i+"rd->"+j);
             board[i][j] += -1;
             i++;
             j++;
@@ -91,7 +85,6 @@ class Solution {
          int i = row+1;
          int j = col+1;
         while(j<board.length && i<board.length){
-            System.out.println(i+"erd->"+j);
             board[i][j] += 1;
             i++;
             j++;
