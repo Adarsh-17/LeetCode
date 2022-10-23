@@ -1,24 +1,42 @@
 class Solution {
     public int[] findErrorNums(int[] nums) {
-        for(int i=0;i<nums.length;i++){
-            while(nums[i]!=(i+1) && nums[nums[i]-1]!=nums[i]){
-               swap(nums,i,nums[i]-1);
-            }
-       }
-           
+        int diff = sum(nums.length) - arrSum(nums);
+        int sqdiff = squareSum(nums.length) - arrSquareSum(nums);
         int[] ans = new int[2];
-        for(int i=0;i<nums.length;i++){
-            if(nums[i]!=i+1){
-                ans[0] = nums[i];
-                ans[1] = i+1;
-            }
+        ans[1] = ((sqdiff/diff) + diff)/2;
+        ans[0] = ((sqdiff/diff) - diff)/2;
+        return ans;
+    }
+    
+    public int sum(int n){
+        int ans = 0;
+        for(int i=1;i<=n;i++){
+            ans = ans + i;
         }
         return ans;
     }
-
-    public static void swap(int[] nums,int x,int y){
-        int temp = nums[x];
-        nums[x] = nums[y];
-        nums[y] = temp;
-    } 
+    
+    public int arrSum(int[] nums){
+        int ans = 0;
+        for(int i=0;i<nums.length;i++){
+            ans = ans + nums[i];
+        }
+        return ans;
+    }
+    
+     public int squareSum(int n){
+        int ans = 0;
+        for(int i=1;i<=n;i++){
+            ans = ans + i*i;
+        }
+        return ans;
+    }
+    
+     public int arrSquareSum(int[] nums){
+        int ans = 0;
+        for(int i=0;i<nums.length;i++){
+            ans = ans + nums[i]*nums[i];
+        }
+        return ans;
+    }
 }
