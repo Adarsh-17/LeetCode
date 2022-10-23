@@ -1,11 +1,10 @@
 class Solution {
     public int[] findErrorNums(int[] nums) {
-        int count = 0;
         for(int i=0;i<nums.length;i++){
-            while(nums[i]!=(i+1) && nums[nums[i]-1]!=nums[i] && count<10){
+            while(nums[i]!=(i+1) && nums[nums[i]-1]!=nums[i]){
                swap(nums,i,nums[i]-1);
             }
-            }
+       }
            
         int[] ans = new int[2];
         for(int i=0;i<nums.length;i++){
