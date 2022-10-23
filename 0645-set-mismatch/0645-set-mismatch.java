@@ -3,11 +3,8 @@ class Solution {
         int count = 0;
         for(int i=0;i<nums.length;i++){
             while(nums[i]!=(i+1) && nums[nums[i]-1]!=nums[i] && count<10){
-                int x = i;
-                int y = nums[i] - 1;
-                swap(nums,x,y);
+               swap(nums,i,nums[i]-1);
             }
-            System.out.println();
             }
            
         int[] ans = new int[2];
