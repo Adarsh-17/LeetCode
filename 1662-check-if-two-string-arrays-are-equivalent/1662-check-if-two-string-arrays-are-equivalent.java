@@ -8,6 +8,6 @@ class Solution {
         for(int i=0;i<word2.length;i++){
             sb2.append(word2[i]);
         }
-        return sb1.toString().equals(sb2.toString());
+        return sb1.compareTo(sb2)==0;
     }
 }
