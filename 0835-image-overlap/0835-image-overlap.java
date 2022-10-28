@@ -1,50 +1,34 @@
 class Solution {
     public int largestOverlap(int[][] img1, int[][] img2) {
+        int len = img1.length;
         int maxCount = 0;
-        for(int i=0;i<img1.length;i++){
-            for(int j=0;j<img2.length;j++){
-                maxCount = Math.max(maxCount,shiftAndCount(img1,img2,i,j));
-                maxCount = Math.max(maxCount,shiftAndCount(img2,img1,i,j));
+        for(int yshift=0;yshift<len;yshift++){
+            for(int xshift=0;xshift<len;xshift++){
+                maxCount = Math.max(maxCount,shiftAndCount(img1,img2,yshift,xshift));
+                maxCount = Math.max(maxCount,shiftAndCount(img2,img1,yshift,xshift));
             }
         }
         return maxCount;
     }
     
-    public int getMatchCount(int[][] A,int[][] B,int startAI,int startAJ){
-        int leftcount = 0;
-        int rightcount = 0;
-        int startBI = 0;
-        int startBJ = 0;
-        for(int i=startAI;i<A.length;i++){
-            startBJ = 0;
-            for(int j=startAJ;j<B.length;j++){
-                if(A[i][j]==1&&A[i][j]==B[startBI][startBJ]){
-                    leftcount++;
+    public int shiftAndCount(int[][] A,int[][] B,int yshift,int xshift){
+        int rightshiftcount = 0;
+        int leftshiftcount = 0;
+        int len = A.length;
+        int brow = 0;
+        int bcol = 0;
+        for(int row=0;row+yshift<len;row++){
+            for(int col=0;col+xshift<len;col++){
+                if(A[row][col]==1 && A[row][col] == B[row+yshift][col+xshift]){
+                    rightshiftcount++;
                 }
-                if(B[i][j]==1&&B[i][j]==A[startBI][startBJ]){
-                    rightcount++;
+                if(B[row+yshift][col]==1 && A[row][col+xshift] == B[row+yshift][col]){
+                    leftshiftcount++;
                 }
-                startBJ++;
             }
-            startBI++;
         }
-        return Math.max(rightcount,leftcount);
+        System.out.println(yshift+"-"+xshift+"-"+leftshiftcount+"-"+rightshiftcount);
+        return Math.max(rightshiftcount,leftshiftcount);
     }
-    protected int shiftAndCount(int[][] M, int[][] R,int xShift,int yShift) {
-        int leftShiftCount = 0, rightShiftCount = 0;
-        int rRow = 0;
-        // count the cells of ones in the overlapping zone.
-        for (int mRow = yShift; mRow < M.length; ++mRow) {
-            int rCol = 0;
-            for (int mCol = xShift; mCol < M.length; ++mCol) {
-                if (M[mRow][mCol] == 1 && M[mRow][mCol] == R[rRow][rCol])
-                    leftShiftCount += 1;
-                if (M[mRow][rCol] == 1 && M[mRow][rCol] == R[rRow][mCol])
-                    rightShiftCount += 1;
-                rCol += 1;
-            }
-            rRow += 1;
-        }
-        return Math.max(leftShiftCount, rightShiftCount);
-    }
+    
 }
