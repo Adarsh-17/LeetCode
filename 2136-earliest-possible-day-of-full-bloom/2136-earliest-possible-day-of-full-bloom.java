@@ -17,25 +17,11 @@ class Solution {
         int totalDays = 0;
 
         for (Pair current : flowerTime) {
-            int max1;
-            if(totalDays>=current.growTime){
-              max1 = totalDays + current.plantTime;
-            } else {
-                max1 = current.plantTime + current.growTime;
-            }
-            int max2;
-            if(current.growTime+current.plantTime>=totalDays-plantingDays){
-              max2 = plantingDays + current.plantTime+current.growTime;
-            } else {
-                max2 = totalDays;
-            }
-            if(max1>=max2){
-                totalDays = max2;
-            }
-            else {
-                totalDays = max2;
-            }
+
+            totalDays = Math.max(totalDays, plantingDays + current.plantTime + current.growTime);
+
             plantingDays += current.plantTime;
+
         }
 
         return totalDays;
